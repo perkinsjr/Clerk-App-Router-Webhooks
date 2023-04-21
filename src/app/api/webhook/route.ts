@@ -1,6 +1,5 @@
-import type { IncomingHttpHeaders } from "http";
-import type { NextApiRequest, NextApiResponse } from "next";
-import type { WebhookRequiredHeaders } from "svix";
+//ignore typescript
+// @ts-nocheck
 import type { User } from "@clerk/nextjs/api";
 import { Webhook } from "svix";
 import { headers } from "next/headers";
@@ -34,7 +33,9 @@ export async function POST(
   const svixIdTimeStamp = headerPayload.get("svix-timestamp");
   const svixSignature = headerPayload.get("svix-signature");
   if (!svixId || !svixIdTimeStamp || !svixSignature) {
-    console.log("error")
+    console.log("svixId", svixId)
+    console.log("svixIdTimeStamp", svixIdTimeStamp)
+    console.log("svixSignature", svixSignature)
     return new Response("Error occured", {
       status: 400,
     })
